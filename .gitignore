@@ -1,0 +1,7 @@
+.env
+.env.debug
+BotStart.bat
+Stable
+nodemon.json
+__pycache__
+domainlist.txt
