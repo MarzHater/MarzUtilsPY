@@ -6,11 +6,10 @@ from discord.ext import tasks, commands
 from dotenv import load_dotenv
 from os import getenv
 
+load_dotenv()
 class TwitchAnnouncer(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
-        load_dotenv()
         self.channel_id = int(getenv('ANNOUNCEMENTS_ID'))
         self.twitch_username = getenv('TWITCH_USERNAME')
         self.client_id = getenv('TWITCH_CLIENT_ID')
