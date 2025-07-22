@@ -88,6 +88,8 @@ class TwitchAnnouncer(commands.Cog):
 
         await channel.send(embed=embed)
 
+        await channel.send(f"<@&{1396962248144064652}> We are live!") #Hardcoded Role ID to ping, can change here
+
     @tasks.loop(seconds=60)
     async def twitch_checker(self):
         await self.check_stream_status()
