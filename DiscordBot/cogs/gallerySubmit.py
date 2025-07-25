@@ -5,7 +5,7 @@ import sqlite3
 import datetime
 import os
 import aiohttp
-import uuid  # to generate unique filenames
+import uuid
 
 DB_PATH = "gallery.db"
 IMAGE_FOLDER = "gallery_images"
@@ -14,7 +14,7 @@ class GalleryCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.init_db()
-        os.makedirs(IMAGE_FOLDER, exist_ok=True)  # Ensure folder exists
+        os.makedirs(IMAGE_FOLDER, exist_ok=True)
 
     def init_db(self):
         with sqlite3.connect(DB_PATH) as conn:
@@ -41,7 +41,6 @@ class GalleryCog(commands.Cog):
         user = str(interaction.user)
         timestamp = datetime.datetime.utcnow().isoformat()
 
-        # Download the image
         async with aiohttp.ClientSession() as session:
             async with session.get(image.url) as resp:
                 if resp.status != 200:
@@ -56,7 +55,6 @@ class GalleryCog(commands.Cog):
         with open(filepath, "wb") as f:
             f.write(image_bytes)
 
-        # Save the file path in the database
         with sqlite3.connect(DB_PATH) as conn:
             c = conn.cursor()
             c.execute("INSERT INTO submissions (user, title, image_path, timestamp) VALUES (?, ?, ?, ?)",
