@@ -4,6 +4,14 @@ from dotenv import load_dotenv
 import discord
 from discord.ext import commands
 import asyncio
+import subprocess
+
+###WEBSERVER###
+current_dir = os.path.dirname(os.path.abspath(__file__))
+flask_script = os.path.abspath(os.path.join(current_dir, "../Gallery/galleryServer.py"))
+
+subprocess.Popen(["python3", flask_script])
+###WEBSERVER END###
 
 load_dotenv()
 token = getenv("BOT_TOKEN")
@@ -11,7 +19,7 @@ token = getenv("BOT_TOKEN")
 intents = discord.Intents.default()
 intents.message_content = True
 
-bot = commands.Bot(command_prefix="/", intents = intents)
+bot = commands.Bot(command_prefix=["/", "!"], intents = intents)
 
 @bot.event
 async def on_ready():

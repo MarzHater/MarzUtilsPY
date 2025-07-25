@@ -80,7 +80,7 @@ class TwitchAnnouncer(commands.Cog):
 
         embed = discord.Embed(
             title=f"{self.twitch_username} is now live!",
-            description=f"**{title}**\nPlaying: {game_name}\n\n[Watch here]({url})",
+            description=f"**{title}**\nPlaying: {game_name}\n\n[WATCH HERE]({url})",
             color=discord.Color.purple(),
             timestamp=datetime.datetime.utcnow()
         )
